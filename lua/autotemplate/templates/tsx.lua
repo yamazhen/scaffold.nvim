@@ -5,7 +5,9 @@ type Props = {}
 
 const ${FILENAME} = (props: Props) => {
   return (
-	
+    <div>
+      
+    </div>
   )
 }
 
