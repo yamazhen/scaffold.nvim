@@ -9,6 +9,7 @@ M.templates = {
 	java = require(templates_path .. ".java"),
 	tsx = require(templates_path .. ".tsx"),
 	html = require(templates_path .. ".html"),
+	c = require(templates_path .. ".c"),
 }
 
 -- java package declaration
@@ -51,6 +52,8 @@ local function set_cursor_position(filetype, package_declaration)
 		vim.api.nvim_win_set_cursor(0, { 8, 6 })
 	elseif filetype == "html" then
 		vim.api.nvim_win_set_cursor(0, { 9, 4 })
+	elseif filetype == "c" then
+		vim.api.nvim_win_set_cursor(0, { 4, 4 })
 	end
 end
 
@@ -70,7 +73,7 @@ function M.setup(opts)
 	M.config = vim.tbl_deep_extend("force", M.config, opts or {})
 
 	vim.api.nvim_create_autocmd("BufNewFile", {
-		pattern = { "*.java", "*.tsx", "*.html" },
+		pattern = { "*.java", "*.tsx", "*.html", "*.c" },
 		callback = function(args)
 			local filepath = args.file
 			local filetype = vim.fn.fnamemodify(filepath, ":e")

@@ -3,7 +3,7 @@ import React from 'react'
 
 type Props = {}
 
-const ${FILENAME} = (props: Props) => {
+const ${FILENAME}: React.FC<Props> = () => {
   return (
     <div>
       

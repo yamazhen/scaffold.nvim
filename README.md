@@ -1,14 +1,15 @@
 > [!WARNING]
 > This is a WIP plugin
 
-# AutoTemplate.nvim
+# Auto Template (autotemplate.nvim)
 
-**autotemplate.nvim** is a neovim plugin that automatically populates new files with predefined templates based on their filetypes. This helps streamline development by automatically generating boilerplate code when creating new files.
+**autotemplate.nvim** is a neovim plugin that automatically populates new files with predefined templates based on their filetypes. This helps streamline development by automatically generating boilerplate code when creating new files. I made this for myself to use when developing spring-boot web applications.
 
 ## Currently working filetypes
 * **Java:** automatically inserts a class template with package declaration.
 * **Typescript React:** automatically inserts a typescript react component template.
 * **Html:** generic html boilerplate.
+* **C:** generic c language boilerplate.
 
 ## Features
 * Automatically generates a template when a new file is created.
