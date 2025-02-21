@@ -12,8 +12,6 @@ return function(filepath, filename)
 		.. "public class "
 		.. filename
 		.. " {\n"
-		.. "    public static void main(String[] args) {\n"
-		.. "        \n"
-		.. "    }\n"
+		.. "    \n"
 		.. "}"
 end

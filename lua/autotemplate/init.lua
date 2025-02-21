@@ -47,7 +47,7 @@ local function set_cursor_position(filetype, package_declaration)
 	end
 
 	if filetype == "java" then
-		vim.api.nvim_win_set_cursor(0, { 3 + line_offset, 8 })
+		vim.api.nvim_win_set_cursor(0, { 2 + line_offset, 4 })
 	elseif filetype == "tsx" then
 		vim.api.nvim_win_set_cursor(0, { 8, 6 })
 	elseif filetype == "html" then
@@ -72,17 +72,19 @@ end
 function M.setup(opts)
 	M.config = vim.tbl_deep_extend("force", M.config, opts or {})
 
-	vim.api.nvim_create_autocmd("BufNewFile", {
+	vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
 		pattern = { "*.java", "*.tsx", "*.html", "*.c" },
 		callback = function(args)
-			local filepath = args.file
-			local filetype = vim.fn.fnamemodify(filepath, ":e")
-			local filename = vim.fn.fnamemodify(filepath, ":t:r")
+			if vim.fn.line("$") == 1 and vim.fn.getline(1) == "" then
+				local filepath = args.file
+				local filetype = vim.fn.fnamemodify(filepath, ":e")
+				local filename = vim.fn.fnamemodify(filepath, ":t:r")
 
-			populate_file(filetype, filename, filepath)
+				populate_file(filetype, filename, filepath)
 
-			if M.config.startinsert then
-				vim.cmd("startinsert")
+				if M.config.startinsert then
+					vim.cmd("startinsert")
+				end
 			end
 		end,
 	})
