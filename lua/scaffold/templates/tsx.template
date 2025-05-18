@@ -1,4 +1,3 @@
-return [[
 import React from 'react'
 
 type Props = {}
@@ -6,10 +5,9 @@ type Props = {}
 const ${FILENAME}: React.FC<Props> = () => {
   return (
     <div>
-      
+      ${CURSOR}      
     </div>
   )
 }
 
 export default ${FILENAME}
-]]
