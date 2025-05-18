@@ -1,5 +1,6 @@
 > [!WARNING]
 > This is a WIP plugin
+>
 > Has been renamed from autotemplate.nvim to scaffold.nvim
 
 # scaffold.nvim
