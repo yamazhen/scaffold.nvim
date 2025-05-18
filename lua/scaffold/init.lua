@@ -91,12 +91,19 @@ local function populate_file(filetype, filename, filepath)
 	end
 end
 
+-- check if template exists
+local function template_exists(filetype)
+	local template_dir = get_template_dir()
+	local template_path = template_dir .. "/" .. filetype .. ".template"
+	return vim.fn.filereadable(template_path) == 1
+end
+
 -- setup function
 function M.setup(opts)
 	M.config = vim.tbl_deep_extend("force", M.config, opts or {})
 
 	vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead", "BufEnter" }, {
-		pattern = { "*.java", "*.tsx", "*.html", "*.c" },
+		pattern = { "*" },
 		callback = function(args)
 			local line_count = vim.api.nvim_buf_line_count(0)
 			local first_line = vim.api.nvim_buf_get_lines(0, 0, 1, false)[1] or ""
@@ -104,11 +111,14 @@ function M.setup(opts)
 			if line_count == 1 and first_line == "" then
 				local filepath = args.file
 				local filetype = vim.fn.fnamemodify(filepath, ":e")
-				local filename = vim.fn.fnamemodify(filepath, ":t:r")
-				populate_file(filetype, filename, filepath)
 
-				if M.config.startinsert then
-					vim.cmd("startinsert")
+				if template_exists(filetype) then
+					local filename = vim.fn.fnamemodify(filepath, ":t:r")
+					populate_file(filetype, filename, filepath)
+
+					if M.config.startinsert then
+						vim.cmd("startinsert")
+					end
 				end
 			end
 		end,

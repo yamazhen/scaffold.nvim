@@ -18,6 +18,7 @@ this is a neovim plugin that automatically populates new files with predefined t
 * Supports Java, Typescript React and HTML file types (so far).
 * Optionally adds a package declartion for Java files based on their directory structure.
 * Configurable to start in insert mode after populating the template.
+* You can create your own templates and specify their directory
 
 ## Installation
 To install `scaffold.nvim`, you can use any Neovim plugin manager.
@@ -46,7 +47,7 @@ require("scaffold").setup({
 })
 ```
 
-You can create your own templates by specifying the `template_dir` configuration above. Below is the format to create a template
+You can create templates for any file type by adding a file named <extension>.template (e.g., py.template, tsx.template) to your templates directory. The plugin will automatically use the appropriate template when you create a new file with that extension.
 
 ```template
 import React from 'react'
